@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (!usageLimit || usageLimit < 1) {
+       /* if (!usageLimit || usageLimit < 1) {
             alert("Please enter a valid usage limit (greater than 0)."); //грешка
             return;
         }
+        */
 
         // If a custom alias is provided, include it in the TinyURL creation
         let ApiURL = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longURL)}`;
@@ -83,15 +84,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Функция за лимит за използвания
     function checkUsage(shortURL) {
-        const storedData = JSON.parse(localStorage.getItem(shortURL));
+        const storedData = JSON.parse(localStorage.getItem(shortURL));//прочитане на брой изолзвания
         if (storedData) {
-            if (storedData.count < storedData.limit) {
+            if (storedData.count < storedData.limit) 
+            {
                 storedData.count += 1; //увеличаване на брояч
                 localStorage.setItem(shortURL, JSON.stringify(storedData));
-                return true; //Позволи
-            } else {
+                return true; //Позволи при недостигнат брой използвания
+            } 
+            else if (storedData == storedData.limit == 0) 
+            {
+                return true; //Позволи при неподаден брой използвания
+            }
+            else
+            {
                 alert("Usage limit reached for this URL!");
-                return false; //Лимит достигнат
+                return false; //Спри при достигнат лимит
             }
         }
         return false; // URL not found
