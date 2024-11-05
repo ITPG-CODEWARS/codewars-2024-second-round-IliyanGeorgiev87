@@ -5,54 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
     
-    <script src="mainscript.js" defer></script> <!-- Use defer to ensure JS loads after HTML -->
+    <script src="mainscript.js" defer></script>
     <link rel="stylesheet" href="index.css">
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!--Main-->
     <section>
         <div>
-            <p class="heading">Shorten URL</p>
+            <p class="heading">Shorten URL.</p>
         </div>
-        
-        <div>
-            <label for="longURL" class="label">Shortened URL address</label>
-            <BR><input type="text" 
-            id="longURL"
-            placeholder="*Input URL address here">
-        </div>
+    </section>
 
-        <div class="container"
-            <div class="buttons">
-                <button id="reload-btn">
-                    Refresh
-                </button>
+    <section>
 
-                <button id="short-btn">
-                    Shorten URL
-                </button>
+        <div class="mother-div">
+            <div class="container">
+                <label for="longURL" class="label">Shortened URL address</label>
+                <BR><input type="text" 
+                id="longURL"
+                placeholder="*Input URL address here">
             </div>
-        </div>
-
-        <label for="customAlias">Custom Alias (Optional):</label>
-        <input type="text" id="customAlias" placeholder="Enter a custom alias (optional)">
     
-        <div>
-            <input type="number" 
-            id="usageLimit"
-            placeholder="Usage Limit" min="1">
-        </div>
-
-        <div>
-            <label for="shortURL" class="label">Shortened URL address</label>
-            <br><textarea id="shortURL" cols="6" rows="1" readonly></textarea>
-        </div>
+            <div class="container">
+                <div class="buttons">
+                    <button id="reload-btn">
+                        Refresh
+                    </button>
+    
+                    <button id="short-btn">
+                        Shorten URL
+                    </button>
+                </div>
+            </div>
+    
+            <label for="customAlias" class="label">Custom Alias (Optional):</label>
+            <br><input type="text" id="customAlias" placeholder="Enter a custom alias (optional)" class="label">
         
-
-        <div>
-            <label for="qrCode">QR Code</label>
-            <img id="qrCode" alt="QR Code will appear here" style="display: none;"/>
-            <button id="save-qr-btn" style="display: none;">Save QR Code</button>
+            <div class="container">
+                <input type="number" 
+                id="usageLimit"
+                placeholder="Usage Limit" min="1">
+            </div>
+    
+            <div class="container">
+                <label for="shortURL" class="label">Shortened URL address</label>
+                <br><textarea id="shortURL" cols="6" rows="1" readonly></textarea>
+            </div>
+            
+    
+            <div class="container">
+                <label for="qrCode">QR Code</label>
+                <img id="qrCode" alt="QR Code will appear here" style="display: none;"/>
+                <button id="save-qr-btn" style="display: none;">Save QR Code</button>
+            </div>
         </div>
         
     </section>
