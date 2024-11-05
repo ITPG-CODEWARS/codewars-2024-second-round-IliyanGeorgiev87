@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    
+    <script src="mainscript.js" defer></script> <!-- Use defer to ensure JS loads after HTML -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!--Main-->
+    <section>
+        <div>
+            <p class="heading">Shorten URL</p>
+        </div>
+        
+        <div>
+            <label for="longURL" class="label">Shortened URL address</label>
+            <BR><input type="text" 
+            id="longURL"
+            placeholder="*Input URL address here">
+        </div>
+
+        <div class="container"
+            <div class="buttons">
+                <button id="reload-btn">
+                    Refresh
+                </button>
+
+                <button id="short-btn">
+                    Shorten URL
+                </button>
+            </div>
+        </div>
+    
+        <div>
+            <label for="shortURL" class="label">Shortened URL address</label>
+            <br><textarea id="shortURL" cols="6" rows="1" readonly></textarea>
+        </div>
+
+        <div>
+            <input type="number" 
+            id="usageLimit"
+            placeholder="Usage Limit" min="1">
+        </div>
+        
+
+        <div>
+            <label for="qrCode">QR Code</label>
+            <img id="qrCode" alt="QR Code will appear here" style="display: none;"/>
+            <button id="save-qr-btn" style="display: none;">Save QR Code</button>
+        </div>
+        
+    </section>
+    
+    <div class="copyright"><p>Made by Iliyan Georgiev</p></div>
+</body>
+</html>
