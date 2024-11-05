@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced URL Shortener</title>
+    
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<body>
+
+    <div class="mainheading">
+        <p>Shorty. <img src = "logo.png" class="iconS"></p>
+    </div>
+
+    <center><div class="container">
+    
+    <!-- URL input -->
+    
+        <label>Въведи линк за съкращаване <i class='bx bx-link-alt'></i> </label>
+        <input type="text" id="urlInput" placeholder="Въведи линк за съкращаване" />
+    
+    <!-- Length selection -->
+        <label>Дължина URL</label>
+        <input type="number" id="lengthInput" placeholder="Въведи дължина (5-20, задължително)" min="5" max="20" />
+    
+    <!-- Alias input -->
+        <label>Въведи псевдоним</label>
+        <input type="text" id="aliasInput" placeholder="Въведи псевдоним тук (по избор)" />
+    
+    <!-- Expiry time in seconds -->
+        <label>Време за изтичане (в минути)</label>
+        <input type="number" id="expiryInput" placeholder="Въведи време за изтичане (по избор)" min="0" />
+
+    <!-- Max uses -->
+        <label>Максимален брой използвания</label>
+        <input type="number" id="maxUsesInput" placeholder="Въведи брой използвания (0- безкрайност)" min="0" />
+    
+        <button id="shortenButton">Съкрати!</button>
+
+        <button id="copyButton">Съкрати!</button>
+
+
+    <div class="output" id="output" style="display: none;">
+        <p>Съкратен link: <a id="shortenedLink" href="#" target="_blank"></a></p>
+    </div>
+</div></center>
+
+<script src="script.js"></script>
+
+</body>
+</html>
