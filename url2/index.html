@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced URL Shortener</title>
+    
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <div class="mainheading">
+        <p>Shorty.</p>
+    </div>
+
+    <center><div class="container">
+    
+        <h1>Advanced URL Shortener</h1>
+    
+    <!-- URL input -->
+    
+        <lable>Въведи линк за съкращаване</lable>
+        <input type="text" id="urlInput" placeholder="Въведи линк за съкращаване" />
+    
+    <!-- Length selection -->
+        <lable>Дължина URL</lable>
+        <input type="number" id="lengthInput" placeholder="Въведи дължина (5-20, задължително)" min="5" max="20" />
+    
+    <!-- Alias input -->
+        <lable>Въведи псевдоним</lable>
+        <input type="text" id="aliasInput" placeholder="Въведи псевдоним тук (по избор)" />
+    
+    <!-- Expiry time in seconds -->
+        <lable>Време за изтичане (в минути)</lable>
+        <input type="number" id="expiryInput" placeholder="Въведи време за изтичане (по избор)" min="0" />
+
+    <!-- Max uses -->
+        <lable>Максимален брой използвания</lable>
+        <input type="number" id="maxUsesInput" placeholder="Въведи брой използвания (0- безкрайност)" min="0" />
+    
+        <button>Съкрати!</button>
+
+    <div class="output" id="output" style="display: none;">
+        <p>Съкратен link: <a id="shortenedLink" href="#" target="_blank"></a></p>
+    </div>
+</div></center>
+
+<script src="script.js"></script>
+
+</body>
+</html>
