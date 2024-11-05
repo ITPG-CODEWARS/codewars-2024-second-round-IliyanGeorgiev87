@@ -14,15 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //проверки за URL
         if (!longURL) {
-            alert("Please enter a URL."); //грешка
+            alert("Please enter a valid URL!"); //грешка
             return;
         }
-
-       /* if (!usageLimit || usageLimit < 1) {
-            alert("Please enter a valid usage limit (greater than 0)."); //грешка
-            return;
-        }
-        */
 
         // If a custom alias is provided, include it in the TinyURL creation
         let ApiURL = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longURL)}`;
@@ -37,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(ApiURL)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Network response was not ok");//Грешка при интернет връзка
+                    throw new Error("Network response was not stable!");//Грешка при интернет връзка
                 }
                 return response.text();
             })
@@ -79,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.removeChild(link);
                 URL.revokeObjectURL(link.href);
             })
-            .catch(error => console.error('Error downloading QR code:', error));
+            .catch(error => console.error('Error downloading QR code! Error: ', error));
     });
 
     //Функция за лимит за използвания
@@ -104,12 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false; // URL not found
     }
-
-    //Към съкратен линк
-    document.getElementById('shortURL').addEventListener('click', () => {
-        const shortURL = document.getElementById('shortURL').value;
-        if (checkUsage(shortURL)) {
-            window.open(shortURL, '_blank'); //Отвори, ако лимит не е достигнат 
-        }
-    });
 });
