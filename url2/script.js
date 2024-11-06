@@ -46,17 +46,15 @@ function shortenURL()
         usesLeft: maxUsesInput > 0 ? maxUsesInput : Infinity
     };
 
-    // Save the shortened URL data to localStorage
+    //съхрани локално
     localStorage.setItem(shortened, JSON.stringify(linkData));
 
-    // Display the shortened link
+    //покажи
     const outputDiv = document.getElementById('output');
     const shortenedLink = document.getElementById('shortenedLink');
     
     shortenedLink.href = shortened;
     shortenedLink.textContent = shortened;
-
-    // Generate and display the QR code for the shortened URL
     generateQRCode(shortened);
 
     outputDiv.style.display = 'block';
