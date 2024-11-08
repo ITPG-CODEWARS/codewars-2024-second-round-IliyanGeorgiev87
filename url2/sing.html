@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+
+    <div class="mainheading">
+        <p>Shorty. <img src = "logo.png" class="iconS"></p>
+    </div>
+
+    <div id="flex">
+        <a href = "log.html" class="accountbutton">
+            <button >Log in</button>
+        </a>
+        <a href = "index.html" class="accountbutton">
+            <button >Home</button>
+        </a>
+    </div>
+
+    <center>
+    <div class="container" style="text-align: center; margin-top: 20px;">
+        <!-- Въвеждане на линк -->
+        <label>Input username <i class='bx bx-link-alt'></i> </label>
+        <input type="text" id="urlInput" name = "usernameInput" placeholder="Въведи линк за съкращаване" />
+    
+        <!-- Дължина на URL -->
+        <label>Input password</label>
+        <input type="password" id="lengthInput" name = "passwordInput" placeholder="макс 20" min="3" max="20" />
+    
+        <!-- буттон за съкращение -->
+        <button id="shortenButton" style="margin-top: 20px;">Създай акоунт</button>
+
+    </div>
+</center>
+
+<script src="script.js"></script>
+
+</body>
+</html>

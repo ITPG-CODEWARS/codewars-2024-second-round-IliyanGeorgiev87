@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('shortenButton').addEventListener('click', shortenURL);
-    
-    const path = window.location.pathname.replace('/', '');
-    if (path) {
-        redirectToOriginal(path);
+    const shortenButton = document.getElementById('shortenButton');
+    if (shortenButton) {
+        shortenButton.addEventListener('click', shortenURL);
     }
 
     const saveButton = document.getElementById('saveButton');
@@ -12,10 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function shortenURL() 
-{
-
-    //стойности и данни
+function shortenURL() {
+    // Get input values
     const urlInput = document.getElementById('urlInput').value.trim();
     const aliasInput = document.getElementById('aliasInput').value.trim();
     let lengthInput = parseInt(document.getElementById('lengthInput').value);
@@ -28,65 +24,78 @@ function shortenURL()
         return;
     }
 
-    //извести ако дължина по-малка от 5 или по-голяма от 20
+    // Validate length
     if (isNaN(lengthInput) || lengthInput < 5 || lengthInput > 20) {
         alert('Please enter a length between 5 and 20 characters!');
         return;
     }
 
-    //генерирай линк
+    // Generate shortened URL
     const shortened = generateShortenedURL(urlInput, aliasInput, lengthInput);
 
-    //съхрани линк
+    // Prepare link data for local storage
     const linkData = {
         originalUrl: urlInput,
         shortenedUrl: shortened,
-        expiryTime: expiryInput > 0 ? Date.now() + expiryInput * 60000 : 0, //изтичане в минути 1 000 ms * 60ms * 60s
+        expiryTime: expiryInput > 0 ? Date.now() + expiryInput * 60000 : 0,  // Expiry time in ms
         maxUses: maxUsesInput > 0 ? maxUsesInput : Infinity,
         usesLeft: maxUsesInput > 0 ? maxUsesInput : Infinity
     };
 
-    //съхрани локално
+    // Save link data to localStorage
     localStorage.setItem(shortened, JSON.stringify(linkData));
 
-    //покажи
+    // Display the shortened URL and QR code
     const outputDiv = document.getElementById('output');
     const shortenedLink = document.getElementById('shortenedLink');
-    
+
     shortenedLink.href = shortened;
     shortenedLink.textContent = shortened;
     generateQRCode(shortened);
 
+    // Show the output section
     outputDiv.style.display = 'block';
 }
 
 function generateShortenedURL(url, alias, length) {
-    let base64String = btoa(url).substring(0, length); // Generate shortened link
+    let base64String = btoa(url).substring(0, length); // Generate shortened part
+
+    // If an alias is provided, use it instead of the base64String
     if (alias) {
-        base64String = alias; //използвай псевдоним
+        base64String = alias; // Use alias if provided
+    } else {
+        // Generate a random part if no alias is provided
+        base64String = generateRandomString(length);
     }
+
+    // You can also include a timestamp or random value to make it unique each time
     return 'https://shorty/' + base64String;
+}
+
+function generateRandomString(length) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
 }
 
 function generateQRCode(url) {
     const qrCodeContainer = document.getElementById('qrCodeContainer');
-    
     qrCodeContainer.innerHTML = '';
 
-    // Check if the URL is not empty
     if (url && url.trim() !== "") {
         const encodedURL = encodeURIComponent(url);
 
-        //създаване на qr code
+        // Generate QR code
         const qrCodeImage = document.createElement('img');
         qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedURL}`;
-
-
-        qrCodeImage.id = 'qrCodeImage';  //сложи id
+        qrCodeImage.id = 'qrCodeImage';
 
         qrCodeContainer.appendChild(qrCodeImage);
 
-        //покажи бутона
+        // Show the save button
         document.getElementById('saveButton').style.display = 'inline-block';
     } else {
         qrCodeContainer.innerHTML = "Please provide a valid URL to generate a QR code.";
@@ -94,22 +103,22 @@ function generateQRCode(url) {
 }
 
 function saveQRCode(event) {
-    event.preventDefault();  //prevent default функция
+    event.preventDefault();  // Prevent default button action
 
     const qrCodeImage = document.getElementById('qrCodeImage');
     if (qrCodeImage) {
-        //fetch функция
+        // Fetch the QR code image and save it as a file
         fetch(qrCodeImage.src)
             .then(response => response.blob())
             .then(blob => {
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'qr_code.png';  //име на файл
+                a.download = 'qr_code.png';  // Set the downloaded file name
                 document.body.appendChild(a);
-                a.click();  //изтегли!
+                a.click();  // Trigger download
                 document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
+                window.URL.revokeObjectURL(url);  // Clean up the object URL
             })
             .catch(err => {
                 alert('Error while saving QR code: ' + err);
@@ -117,33 +126,4 @@ function saveQRCode(event) {
     } else {
         alert("No QR Code available to save!");
     }
-}
-
-function redirectToOriginal(shortenedPath) {
-    const storedData = localStorage.getItem(shortenedPath);
-    
-    if (storedData) {
-        const linkData = JSON.parse(storedData);
-
-        //провери време на изтичане
-        if (linkData.expiryTime && Date.now() > linkData.expiryTime) {
-            alert('This link has expired!');
-            return;
-        }
-
-        //провери макс изпозлвания
-        if (linkData.usesLeft <= 0) {
-            alert('This link has reached its maximum usage limit!');
-            return;
-        }
-
-        //към оригинален линк
-        window.location.href = linkData.originalUrl;
-
-        //промяна на брояч
-        if (linkData.maxUses !== Infinity) {
-            linkData.usesLeft -= 1;
-            localStorage.setItem(shortenedPath, JSON.stringify(linkData));
-        }
-    } 
 }

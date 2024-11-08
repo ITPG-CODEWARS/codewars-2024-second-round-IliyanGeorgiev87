@@ -27,8 +27,7 @@ h1{
 label{
     font-size: 1.5em;
 }
-input[type="text"], input[type="number"] 
-{
+input{
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -78,10 +77,22 @@ button:hover {
     padding: 3%;
     padding-right: 3.5%;
     width: 30%;
-    height: 40vw;
+    height: fit-content;
     margin-bottom: 5%;
 }
+#flex{
+    display: flex;
+    margin-bottom: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+.accountbutton{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
 
+}
 /*-----------------------*/
 
 /*QR код графика*/
