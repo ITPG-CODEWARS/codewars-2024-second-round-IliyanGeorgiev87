@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function shortenURL() {
+function shortenURL(event) {
+    event.preventDefault();  // Prevent form submission
+
     // Get input values
     const urlInput = document.getElementById('urlInput').value.trim();
     const aliasInput = document.getElementById('aliasInput').value.trim();
@@ -48,9 +50,12 @@ function shortenURL() {
     // Display the shortened URL and QR code
     const outputDiv = document.getElementById('output');
     const shortenedLink = document.getElementById('shortenedLink');
+    const qrCodeContainer = document.getElementById('qrCodeContainer');
 
     shortenedLink.href = shortened;
     shortenedLink.textContent = shortened;
+    
+    // Generate and display QR code
     generateQRCode(shortened);
 
     // Show the output section
@@ -68,7 +73,6 @@ function generateShortenedURL(url, alias, length) {
         base64String = generateRandomString(length);
     }
 
-    // You can also include a timestamp or random value to make it unique each time
     return 'https://shorty/' + base64String;
 }
 
