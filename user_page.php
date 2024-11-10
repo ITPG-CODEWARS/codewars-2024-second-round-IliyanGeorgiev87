@@ -30,7 +30,6 @@ if(!isset($_SESSION['user_name'])){
       <h1>Здвайте, <span><?php echo $_SESSION['user_name'] ?></span></h1>
       <p>добре дошли в главната страница</p>
       <a href="main.php" class="btn">Съкрати линк</a>
-      <a href="links.php" class="btn">Виж твойте линкове</a>
       <a href="logout.php" class="btn">Излез</a>
    </div>
 
