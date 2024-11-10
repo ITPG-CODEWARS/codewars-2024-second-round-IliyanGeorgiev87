@@ -2,7 +2,7 @@
    1. езици - HTML 5, CSS 3, php;
    2. APIs: Online qr code API: https://goqr.me/api/;
    3. database: SQL via PhpMyAdmin;
-2. Dependecies - няма;
+2. Dependecies - tutorial video: https://youtu.be/fC3j2U_UZrQ?si=cKAXnnqM1yiWSPhF ;
 3. Как да отоворим проект?
    1. Изтеглете целято решение като .zip filе и ро разархивирайте;
    2. Ако нямате XAMPP или WAMP изтеглете приложението от официалния сайт:
