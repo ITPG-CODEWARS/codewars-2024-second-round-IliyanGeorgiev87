@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
    <title>Вписване</title>
 
    <!--css link -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
 <div class="form-container">
 
    <form action="" method="post">
-      <h3>login now</h3>
+      <h3>Вписване</h3>
       <?php
       if(isset($error)){
          foreach($error as $error){
@@ -64,9 +64,13 @@ if(isset($_POST['submit'])){
          };
       };
       ?>
-      <input type="email" name="email" required placeholder="enter your email">
-      <input type="password" name="password" required placeholder="enter your password">
-      <input type="submit" name="submit" value="login now" class="form-btn">
+      
+      <input type="email" name="email" required placeholder="Въведете email">
+      
+      <input type="password" name="password" required placeholder="Въведете парола">
+      
+      <input type="submit" name="submit" value="Вписване" class="form-btn">
+      
       <p>Нямате акаунт? <a href="register_form.php">Регистрай се сега</a></p>
    </form>
 

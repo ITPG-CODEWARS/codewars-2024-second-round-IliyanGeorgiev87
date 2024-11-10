@@ -19,7 +19,7 @@ if(!isset($_SESSION['user_name'])){
    <title>User Page</title>
 
    <!-- css link -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="style.css">
 
    <!-- JavaScript -->
    <script src="script.js"></script>

@@ -19,7 +19,7 @@ if(!isset($_SESSION['user_name'])){
    <title>Потребителска страница</title>
 
    <!-- css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
